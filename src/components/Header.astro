@@ -1,0 +1,63 @@
+<header class="header">
+  <div class="container header-inner">
+    <a class="brand" href="/">DAZZLE Studio</a>
+    <nav aria-label="Главная навигация">
+      <ul>
+        <li><a href="#works">Проекты</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#reviews">Отзывы</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-primary" href="#contact">Обсудить проект</a>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    background: rgba(10, 11, 16, 0.82);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 72px;
+  }
+
+  .brand {
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.1rem;
+  }
+
+  li a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  li a:hover {
+    color: var(--text);
+  }
+
+  @media (max-width: 880px) {
+    nav {
+      display: none;
+    }
+  }
+</style>

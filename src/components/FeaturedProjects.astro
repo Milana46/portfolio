@@ -1,0 +1,209 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  projects: CollectionEntry<"projects">[];
+}
+
+const { projects } = Astro.props;
+---
+
+<section id="works" class="section">
+  <div class="container">
+    <div class="top-line">
+      <div>
+        <h2 class="section-title">Примеры работ</h2>
+        <p class="section-subtitle">Кейсы с упором на задачу, визуальную идею и результат.</p>
+        <p class="instagram-note">
+          Больше работ смотрите в нашем
+          <a
+            href="https://www.instagram.com/dazzle_designstudio_?igsh=MXdlY2s0ZTg0OWVvcw=="
+            target="_blank"
+            rel="noreferrer"
+          >
+            instagram
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <div class="projects-grid" aria-label="Прокрутка кейсов" tabindex="0">
+      {
+        projects.map((project) => (
+          <article class="card project-card">
+            <div class="cover" style={`background:${project.data.coverGradient};`} aria-hidden="true"></div>
+            <div class="project-info">
+              <p class="project-category">{project.data.category}</p>
+              <h3>{project.data.title}</h3>
+              <p>{project.data.excerpt}</p>
+              <a href={`/projects/${project.slug}`} class="project-link">
+                Смотреть проект →
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .top-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: end;
+    margin-bottom: 1.3rem;
+  }
+
+  .projects-grid {
+    display: flex;
+    gap: 0.8rem;
+    overflow-x: auto;
+    padding-bottom: 0.4rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) rgba(255, 255, 255, 0.08);
+  }
+
+  .projects-grid::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  .projects-grid::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+  }
+
+  .projects-grid::-webkit-scrollbar-thumb {
+    background: linear-gradient(120deg, #ff4d9e, #f26fae);
+    border-radius: 999px;
+  }
+
+  .projects-grid::-webkit-scrollbar-button {
+    background: #f26fae;
+  }
+
+  .project-card {
+    flex: 0 0 min(520px, 92vw);
+    scroll-snap-align: start;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .cover {
+    position: relative;
+    overflow: hidden;
+    min-height: 210px;
+    border-bottom: 1px solid var(--line);
+    background-size: 180% 180%;
+    animation: coverFlow 7s ease-in-out infinite alternate;
+  }
+
+  .cover::after {
+    content: "";
+    position: absolute;
+    inset: -35% auto auto -35%;
+    width: 78%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0) 68%);
+    filter: blur(2px);
+    animation: coverGlow 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .project-info {
+    padding: 1rem;
+  }
+
+  .project-category {
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    margin: 0 0 0.45rem;
+  }
+
+  h3 {
+    margin: 0 0 0.55rem;
+    font-size: 1.08rem;
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .project-link {
+    display: inline-block;
+    margin-top: 0.9rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  @keyframes coverFlow {
+    0% {
+      background-position: 0% 8%;
+    }
+    50% {
+      background-position: 86% 40%;
+    }
+    100% {
+      background-position: 100% 90%;
+    }
+  }
+
+  @keyframes coverGlow {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 0.55;
+    }
+    50% {
+      transform: translate3d(95%, 72%, 0) scale(1.25);
+      opacity: 0.3;
+    }
+    100% {
+      transform: translate3d(45%, 145%, 0) scale(0.95);
+      opacity: 0.45;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cover,
+    .cover::after {
+      animation: none;
+    }
+  }
+
+  .top-line .section-subtitle {
+    font-size: clamp(1rem, 1.55vw, 1.28rem);
+    line-height: 1.4;
+  }
+
+  .instagram-note {
+    margin-top: 0.55rem;
+    margin-bottom: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .instagram-note a,
+  .instagram-note a:visited,
+  .instagram-note a:hover,
+  .instagram-note a:active {
+    color: var(--accent) !important;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 0.2rem;
+  }
+
+  @media (max-width: 700px) {
+    .top-line {
+      flex-direction: column;
+      align-items: start;
+    }
+  }
+</style>

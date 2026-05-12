@@ -1,0 +1,139 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const projects = await getCollection("projects");
+---
+
+<BaseLayout
+  title="Все проекты — DAZZLE Studio"
+  description="Коллекция кейсов графического дизайнера: брендинг, упаковка, digital и рекламные креативы."
+>
+  <Header />
+  <main class="section">
+    <div class="container">
+      <h1 class="section-title">Примеры работ</h1>
+      <p class="section-subtitle">Выберите кейс, чтобы посмотреть задачу, процесс и итог.</p>
+      <div class="grid list">
+        {
+          projects.map((project) => (
+            <article class="card item">
+              <div class="cover" style={`background:${project.data.coverGradient};`} aria-hidden="true"></div>
+              <div>
+                <p class="meta">{project.data.category}</p>
+                <h2>{project.data.title}</h2>
+                <p>{project.data.excerpt}</p>
+                <a href={`/projects/${project.slug}`}>Открыть кейс →</a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .list {
+    margin-top: 1.2rem;
+  }
+
+  .item {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .cover {
+    position: relative;
+    overflow: hidden;
+    min-height: 125px;
+    border-radius: 0.8rem;
+    border: 1px solid var(--line);
+    background-size: 180% 180%;
+    animation: coverFlow 7s ease-in-out infinite alternate;
+  }
+
+  .cover::after {
+    content: "";
+    position: absolute;
+    inset: -35% auto auto -35%;
+    width: 78%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.36) 0%, rgba(255, 255, 255, 0) 68%);
+    filter: blur(2px);
+    animation: coverGlow 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .meta {
+    margin: 0 0 0.35rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.76rem;
+  }
+
+  h2 {
+    margin: 0 0 0.4rem;
+    font-size: 1.1rem;
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  a {
+    display: inline-block;
+    margin-top: 0.75rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  @keyframes coverFlow {
+    0% {
+      background-position: 0% 8%;
+    }
+    50% {
+      background-position: 86% 40%;
+    }
+    100% {
+      background-position: 100% 90%;
+    }
+  }
+
+  @keyframes coverGlow {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 0.55;
+    }
+    50% {
+      transform: translate3d(95%, 72%, 0) scale(1.25);
+      opacity: 0.3;
+    }
+    100% {
+      transform: translate3d(45%, 145%, 0) scale(0.95);
+      opacity: 0.45;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cover,
+    .cover::after {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .item {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

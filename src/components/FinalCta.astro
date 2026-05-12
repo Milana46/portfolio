@@ -1,0 +1,59 @@
+<section id="contact" class="section">
+  <div class="container">
+    <div class="card cta">
+      <div>
+        <span class="badge">Связаться</span>
+        <h2>Готовы обсудить проект?</h2>
+        <p>Напишите в Instagram или Telegram, чтобы получить оценку стоимости и сроков.</p>
+      </div>
+      <div class="actions">
+        <a
+          class="btn btn-primary"
+          href="https://www.instagram.com/dazzle_designstudio_?igsh=MXdlY2s0ZTg0OWVvcw=="
+          target="_blank"
+          rel="noreferrer"
+        >
+          Instagram
+        </a>
+        <a class="btn btn-ghost" href="https://t.me/milkawpi" target="_blank" rel="noreferrer">Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    background:
+      radial-gradient(circle at 15% 12%, rgba(242, 111, 174, 0.23), transparent 46%),
+      radial-gradient(circle at 85% 82%, rgba(149, 216, 191, 0.2), transparent 40%),
+      var(--surface);
+  }
+
+  h2 {
+    margin: 0.9rem 0 0.5rem;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    justify-content: end;
+  }
+
+  @media (max-width: 900px) {
+    .cta {
+      flex-direction: column;
+      align-items: start;
+    }
+  }
+</style>

@@ -1,0 +1,66 @@
+---
+const services = [
+  {
+    title: "Айдентика и брендинг",
+    description: "Логотип, фирменный стиль, гайдлайны и единый визуальный язык бренда."
+  },
+  {
+    title: "Разработка сайтов и лендингов",
+    description:
+      "Веду проект под ключ: проработка идеи, структура, дизайн, верстка, настройка и запуск сайта."
+  },
+  {
+    title: "Digital-дизайн",
+    description: "Оформляю посты, хайлайтсы, обложки для видео и баннеры для соцсетей и рекламы."
+  },
+  {
+    title: "Креативные концепции",
+    description: "Разработка визуальной идеи кампании с адаптацией под разные форматы."
+  }
+];
+---
+
+<section id="services" class="section">
+  <div class="container">
+    <h2 class="section-title">Услуги</h2>
+    <p class="section-subtitle">
+      Работаю с коммерческими брендами и личными проектами: от первых референсов до финальной
+      передачи макетов.
+    </p>
+    <div class="grid services-grid">
+      {
+        services.map((service) => (
+          <article class="card">
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-grid {
+    margin-top: 1.35rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  h3 {
+    margin: 0 0 0.55rem;
+    font-size: 1.12rem;
+    color: var(--accent);
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 780px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

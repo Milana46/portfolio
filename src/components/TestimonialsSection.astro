@@ -1,0 +1,81 @@
+---
+const reviews = [
+  {
+    text: "Наша главная задача - соблюсти стилистику бренда. А также сделать сайт простым и понятным в использовании. И DAZZLE сделали именно то, что нужно!"
+  },
+  {
+    text: "Спасибо большое за оперативность, я в восторге от дизайна, обязательно обращусь за реализациями новых идей!"
+  },
+  {
+    text: "Спасибо большое за четкость, стильный логотип и оперативную работу!"
+  },
+  {
+    text: "Спасибо большое! И спасибо большое за то, что учли все мои пожелания! Мои продажи выросли и это далеко не предел!"
+  },
+  {
+    text: "Ты не просто сделала сайт и приглашения - ты прочитала мысли. С первой же встречи ты почувствовала, каким должен быть наш день: не пафосным, а очень живым, теплым и настоящим. Невероятно, как удалось передать это настроение через цвета и композицию."
+  },
+  {
+    text: "Мы в восторге. Спасибо, что стала частью нашей истории и сделала ее еще красивее."
+  }
+];
+---
+
+<section id="reviews" class="section">
+  <div class="container">
+    <h2 class="section-title">Что говорят клиенты</h2>
+    <p class="section-subtitle">Отзывы от проектов в сфере beauty, education и digital.</p>
+    <div class="reviews-grid" aria-label="Карусель отзывов" tabindex="0" data-reviews-track>
+      {
+        reviews.map((review) => (
+          <blockquote class="card review-card">
+            <p>{review.text}</p>
+          </blockquote>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews-grid {
+    margin-top: 1.2rem;
+    display: flex;
+    gap: 0.8rem;
+    overflow-x: auto;
+    padding-bottom: 0.4rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) rgba(255, 255, 255, 0.08);
+  }
+
+  .reviews-grid::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  .reviews-grid::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+  }
+
+  .reviews-grid::-webkit-scrollbar-thumb {
+    background: linear-gradient(120deg, #ff4d9e, #f26fae);
+    border-radius: 999px;
+  }
+
+  .reviews-grid::-webkit-scrollbar-button {
+    background: #f26fae;
+  }
+
+  .review-card {
+    margin: 0;
+    min-width: min(520px, 92vw);
+    scroll-snap-align: start;
+  }
+
+  p {
+    margin: 0;
+    color: var(--text);
+    line-height: 1.55;
+  }
+</style>
