@@ -34,7 +34,6 @@ jobs:
         run: npm run build
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
-          CUSTOM_DOMAIN: dazzlestudio.com
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
