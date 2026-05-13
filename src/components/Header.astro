@@ -1,6 +1,10 @@
+---
+const homeHref = import.meta.env.BASE_URL;
+---
+
 <header class="header">
   <div class="container header-inner">
-    <a class="brand" href="/">DAZZLE Studio</a>
+    <a class="brand" href={homeHref}>DAZZLE Studio</a>
     <nav aria-label="Главная навигация">
       <ul>
         <li><a href="#works">Проекты</a></li>
