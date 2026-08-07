@@ -45,6 +45,26 @@ const projectsBase = `${import.meta.env.BASE_URL}projects/`;
         ))
       }
     </div>
+
+    <aside class="logos-cta card" aria-label="Логотипы для Kaspi-брендов">
+      <div class="logos-cta-copy">
+        <p class="logos-cta-label">Логотипы в продаже</p>
+        <h3>Логотипы для Kaspi-брендов</h3>
+        <p>
+          Реальные бренды бытовой техники и косметики — посмотрите подборку логотипов, которые уже
+          работают на витрине.
+        </p>
+      </div>
+      <a
+        class="btn btn-primary logos-cta-button"
+        href="https://drive.google.com/drive/folders/1_5b8kJoUnFcsGiL6jy5n6FMSWVsOptet?usp=drive_link"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Смотреть логотипы
+        <span aria-hidden="true">→</span>
+      </a>
+    </aside>
   </div>
 </section>
 
@@ -172,13 +192,6 @@ const projectsBase = `${import.meta.env.BASE_URL}projects/`;
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .cover,
-    .cover::after {
-      animation: none;
-    }
-  }
-
   .top-line .section-subtitle {
     font-size: clamp(1rem, 1.55vw, 1.28rem);
     line-height: 1.4;
@@ -201,10 +214,123 @@ const projectsBase = `${import.meta.env.BASE_URL}projects/`;
     margin-left: 0.2rem;
   }
 
+  .logos-cta {
+    margin-top: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+    padding: 1.25rem 1.35rem;
+    background:
+      radial-gradient(circle at 12% 18%, rgba(242, 111, 174, 0.28), transparent 42%),
+      radial-gradient(circle at 88% 78%, rgba(149, 216, 191, 0.16), transparent 38%),
+      var(--surface);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .logos-cta::before {
+    content: "";
+    position: absolute;
+    inset: -40% auto auto 55%;
+    width: 220px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 70%);
+    filter: blur(2px);
+    animation: logosGlow 7s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .logos-cta-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 58ch;
+  }
+
+  .logos-cta-label {
+    margin: 0 0 0.4rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-size: 0.74rem;
+    font-weight: 700;
+  }
+
+  .logos-cta h3 {
+    margin: 0 0 0.45rem;
+    font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  }
+
+  .logos-cta-copy p:last-child {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .logos-cta-button {
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    box-shadow:
+      0 10px 28px rgba(242, 111, 174, 0.28),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+    animation: logosPulse 2.8s ease-in-out infinite;
+  }
+
+  .logos-cta-button:hover {
+    box-shadow:
+      0 14px 32px rgba(242, 111, 174, 0.38),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  }
+
+  @keyframes logosGlow {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 0.45;
+    }
+    50% {
+      transform: translate3d(-18%, 30%, 0) scale(1.2);
+      opacity: 0.25;
+    }
+    100% {
+      transform: translate3d(-8%, 55%, 0) scale(0.95);
+      opacity: 0.4;
+    }
+  }
+
+  @keyframes logosPulse {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-2px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cover,
+    .cover::after,
+    .logos-cta::before,
+    .logos-cta-button {
+      animation: none;
+    }
+  }
+
   @media (max-width: 700px) {
     .top-line {
       flex-direction: column;
       align-items: start;
+    }
+
+    .logos-cta {
+      flex-direction: column;
+      align-items: start;
+    }
+
+    .logos-cta-button {
+      width: 100%;
     }
   }
 </style>
